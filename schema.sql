@@ -19,5 +19,5 @@ omdb_id TEXT
 
 
 -- Join tables in MySQL
-select * from nyt
+select nyt.id, title_nyt, byline_nyt, open_date_nyt, omdb_year, omdb_id from nyt
 join omdb on omdb.title_omdb = nyt.title_nyt;
