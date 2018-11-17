@@ -1,0 +1,40 @@
+Group: Moviezzz
+
+Members: Lucas, Andy, Annie
+
+Step 1: 
+    We were intrigued to identify two data sets about movies.
+
+Step 2 (Extract): 
+    Data set number one was extracted using the Open Movie Database (OMDB) Api. More info on http://www.omdbapi.com/
+    - Register an api key
+    - Put together a list of words to be queried. Each word yields a list of movies that contain that key word
+    - Make use of the api parameters and expand the extraction to more pages using the attribute "&page=".
+    - Create a list of 3 main things we want to get out of the query: Movie Title, Year, IMDB ID. 
+    - Do a nested for loop. First one goes through each word query inside the movie list created earlier. Second loop creates a range          of 10 that is used to go through 10 pages worth of api calls. Third loop goes through all the results for each query and appends        to the respective lists: Movie_Title, Years, IMDB_ID. In this case there are 100 queries per key word, a total of 1000 results.
+    
+    Data set number two was extracted using the New York Times Api. More info on https://developer.nytimes.com/
+    - Register an api key
+    - Use the Title column from the OMDB dataframe to construct a list of movies to be queried against the NYT API.
+    - Make use of the api parameters and expand the extraction to more pages using the attribute "&query=".
+    - Create a list of 3 main things we want to get out of the query: Movie Title (based on the OMDB api call), ByLine, Open Date.
+    
+Step 3 (Transform):
+    OMDB API
+    - Create a dataframe of the three lists that were extracted. 
+    - Reset the index and rename the column from 'index' to 'id'.
+    - Rename the columns to match with the query that will create the MySQL database.
+    
+    NYT API
+    - Create a dataframe from the lists
+    - Reset the index and rename the column from 'index' to 'id'.
+    - Rename the columns to match with the query that will create the MySQL database.
+    
+Step 4 (Load):
+
+    - Create a schema for MySQL database and named tables and columns
+    - Create connection to MySQL database
+    - Confirmed connection using "engine.tables_names()"
+    - Load both dataframes (NYT & OMDB) into MySQL database using "to_sql" method.
+    - Write query in MySQL to join tables, drop repeated information such as: ID and Movie Title. 
+    
